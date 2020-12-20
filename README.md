@@ -7,7 +7,7 @@
 
 ## General info
 This project is a Spring application.  
-The main purpose is to develop project management application.  
+The main purpose is to develop project management tool.  
 
 ## Technologies
 Project is created with:
