@@ -6,11 +6,12 @@ import javax.persistence.*;
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long employeeId;
+	private long id;
 	private String firstName;
 	private String lastName;
 	private String email;
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+	fetch = FetchType.LAZY)
 	@JoinColumn(name = "project_id")
 	private Project project;
 	
@@ -23,12 +24,12 @@ public class Employee {
 		this.email = email;
 	}
 	
-	public long getEmployeeId() {
-		return employeeId;
+	public long getId() {
+		return id;
 	}
 	
-	public void setEmployeeId(final long employeeId) {
-		this.employeeId = employeeId;
+	public void setId(final long employeeId) {
+		this.id = employeeId;
 	}
 	
 	public String getFirstName() {
@@ -53,5 +54,13 @@ public class Employee {
 	
 	public void setEmail(final String email) {
 		this.email = email;
+	}
+	
+	public Project getProject() {
+		return project;
+	}
+	
+	public void setProject(final Project project) {
+		this.project = project;
 	}
 }

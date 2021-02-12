@@ -8,7 +8,7 @@ public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long projectId;
+    private long id;
     private String name;
     private String stage; //NOTSTARTED, COMPLETED, INPROGRESS
     private String description;
@@ -25,12 +25,12 @@ public class Project {
         this.description = description;
     }
 
-    public long getProjectId() {
-        return projectId;
+    public long getId() {
+        return id;
     }
 
-    public void setProjectId(long projectId) {
-        this.projectId = projectId;
+    public void setId(long projectId) {
+        this.id = projectId;
     }
 
     public String getName() {
@@ -55,5 +55,13 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+    
+    public void setEmployees(final List<Employee> employees) {
+        this.employees = employees;
     }
 }

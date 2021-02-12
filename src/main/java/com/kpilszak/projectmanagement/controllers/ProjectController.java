@@ -1,5 +1,6 @@
 package com.kpilszak.projectmanagement.controllers;
 
+import com.kpilszak.projectmanagement.dao.EmployeeRepository;
 import com.kpilszak.projectmanagement.dao.ProjectRepository;
 import com.kpilszak.projectmanagement.entities.Employee;
 import com.kpilszak.projectmanagement.entities.Project;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -15,8 +17,12 @@ import java.util.List;
 @RequestMapping("/projects")
 public class ProjectController {
     final ProjectRepository projectRepository;
+    final EmployeeRepository employeeRepository;
     
-    public ProjectController(final ProjectRepository projectRepository) {this.projectRepository = projectRepository;}
+    public ProjectController(final ProjectRepository projectRepository, final EmployeeRepository employeeRepository) {
+        this.projectRepository = projectRepository;
+        this.employeeRepository = employeeRepository;
+    }
     
     @GetMapping
     public String displayProjects(Model model) {
@@ -28,13 +34,18 @@ public class ProjectController {
     @GetMapping("/new")
     public String displayProjectForm(Model model) {
         Project project = new Project();
+        List<Employee> employees = employeeRepository.findAll();
         model.addAttribute("project", project);
+        model.addAttribute("employees", employees);
         return "projects/new-project";
     }
 
     @PostMapping("/save")
-    public String createProject(Project project, Model model) {
+    public String createProject(Project project, @RequestParam List<Long> employees, Model model) {
         projectRepository.save(project);
+        Iterable<Employee> chosenEmployees = employeeRepository.findAllById(employees);
+        chosenEmployees.forEach(it -> it.setProject(project));
+        employeeRepository.saveAll(chosenEmployees);
         return "redirect:/projects/new";
     }
 }
