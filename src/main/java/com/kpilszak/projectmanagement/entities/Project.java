@@ -1,6 +1,7 @@
 package com.kpilszak.projectmanagement.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class Project {
 	
 	}
 	
-	public Project(String name, String stage, String description) {
+	public  Project(String name, String stage, String description) {
 		this.name = name;
 		this.stage = stage;
 		this.description = description;
@@ -64,5 +65,13 @@ public class Project {
 	
 	public void setEmployees(final List<Employee> employees) {
 		this.employees = employees;
+	}
+	
+	public void addEmployee(final Employee employee) {
+		if (employees == null) {
+			employees = new ArrayList<>();
+		}
+		
+		employees.add(employee);
 	}
 }
