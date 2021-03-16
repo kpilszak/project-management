@@ -2,16 +2,10 @@ package com.kpilszak.projectmanagement;
 
 import com.kpilszak.projectmanagement.dao.EmployeeRepository;
 import com.kpilszak.projectmanagement.dao.ProjectRepository;
-import com.kpilszak.projectmanagement.entities.Employee;
-import com.kpilszak.projectmanagement.entities.Project;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
-import java.util.Arrays;
-
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.kpilszak.projectmanagement", "com.kpilszak.utils"})
 public class ProjectManagementApplication {
 	
 	private final EmployeeRepository employeeRepository;
