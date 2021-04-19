@@ -12,6 +12,7 @@ The main purpose is to develop project management tool.
 ## Technologies
 Project is created with:
 * Java  
+* Spring  
 IDE: Intellij IDEA 2020  
 
 ## Sources
