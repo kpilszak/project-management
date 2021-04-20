@@ -12,7 +12,13 @@ The main purpose is to develop project management tool.
 ## Technologies
 Project is created with:
 * Java  
-* Spring  
+* Spring Framework 5
+* Spring Boot 2
+* Spring Security
+* Spring MVC
+* Spring Data
+* Hibernate
+* Thymeleaf
 IDE: Intellij IDEA 2020  
 
 ## Sources
