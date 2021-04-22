@@ -19,6 +19,7 @@ Project is created with:
 * Spring Data
 * Hibernate
 * Thymeleaf  
+  
 IDE: Intellij IDEA 2020  
 
 ## Sources
