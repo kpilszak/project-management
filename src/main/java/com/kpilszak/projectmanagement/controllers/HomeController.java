@@ -7,6 +7,7 @@ import com.kpilszak.projectmanagement.dao.ProjectRepository;
 import com.kpilszak.projectmanagement.dto.ChartData;
 import com.kpilszak.projectmanagement.dto.EmployeeProject;
 import com.kpilszak.projectmanagement.entities.Project;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,10 @@ import java.util.Map;
 
 @Controller
 public class HomeController {
+	
+	@Value("${version}")
+	private String ver;
+	
 	final ProjectRepository projectRepository;
 	final EmployeeRepository employeeRepository;
 	
@@ -27,6 +32,8 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String displayHome(Model model) throws JsonProcessingException {
+		model.addAttribute("versionNumber", ver);
+		
 		Map<String, Object> map = new HashMap<>();
 		
 		List<Project> projects = projectRepository.findAll();
