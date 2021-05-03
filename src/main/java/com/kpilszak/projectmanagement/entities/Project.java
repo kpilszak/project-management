@@ -8,13 +8,17 @@ import java.util.List;
 public class Project {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@SequenceGenerator(name = "project_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_seq")
+	private long projectId;
 	private String name;
 	private String stage; //NOTSTARTED, COMPLETED, INPROGRESS
 	private String description;
 	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.LAZY)
-	@JoinTable(name = "project_employee", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "employee_id"))
+	@JoinTable(name = "project_employee",
+			joinColumns = @JoinColumn(name = "project_id"),
+			inverseJoinColumns = @JoinColumn(name = "employee_id")
+	)
 	private List<Employee> employees;
 	
 	public Project() {
@@ -28,11 +32,11 @@ public class Project {
 	}
 	
 	public long getId() {
-		return id;
+		return projectId;
 	}
 	
 	public void setId(long projectId) {
-		this.id = projectId;
+		this.projectId = projectId;
 	}
 	
 	public String getName() {
@@ -59,13 +63,9 @@ public class Project {
 		this.description = description;
 	}
 	
-	public List<Employee> getEmployees() {
-		return employees;
-	}
+	public List<Employee> getEmployees() { return employees; }
 	
-	public void setEmployees(final List<Employee> employees) {
-		this.employees = employees;
-	}
+	public void setEmployees(final List<Employee> employees) { this.employees = employees; }
 	
 	public void addEmployee(final Employee employee) {
 		if (employees == null) {

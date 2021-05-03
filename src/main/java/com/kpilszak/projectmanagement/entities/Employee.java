@@ -6,13 +6,17 @@ import java.util.List;
 @Entity
 public class Employee {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@SequenceGenerator(name = "employee_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
+	private long employeeId;
 	private String firstName;
 	private String lastName;
 	private String email;
 	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.LAZY)
-	@JoinTable(name = "project_employee", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))
+	@JoinTable(name = "project_employee",
+			joinColumns = @JoinColumn(name = "employee_id"),
+			inverseJoinColumns = @JoinColumn(name = "project_id")
+	)
 	private List<Project> projects;
 	
 	public Employee() {
@@ -25,11 +29,11 @@ public class Employee {
 	}
 	
 	public long getId() {
-		return id;
+		return employeeId;
 	}
 	
 	public void setId(final long employeeId) {
-		this.id = employeeId;
+		this.employeeId = employeeId;
 	}
 	
 	public String getFirstName() {
@@ -56,11 +60,7 @@ public class Employee {
 		this.email = email;
 	}
 	
-	public List<Project> getProjects() {
-		return projects;
-	}
+	public List<Project> getProjects() { return projects; }
 	
-	public void setProjects(final List<Project> projects) {
-		this.projects = projects;
-	}
+	public void setProjects(final List<Project> projects) { this.projects = projects; }
 }
