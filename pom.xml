@@ -85,6 +85,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>pma-app</finalName>
     </build>
 
 </project>
