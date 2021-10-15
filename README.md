@@ -23,4 +23,4 @@ Project is created with:
 IDE: Intellij IDEA 2020  
 
 ## Sources
-This project was created with help from course on <a href="https://www.udemy.com/course/spring-framework-web-development-2020/">https://www.udemy.com/course/spring-framework-web-development-2020/ by Imtiaz Ahmad.
+This project was created with help from course on <a href="https://www.udemy.com/course/spring-framework-web-development-2020/">Learn Spring 5, Boot 2, JPA, Thymeleaf, AOP, Web MVC, REST</a> by Imtiaz Ahmad.
