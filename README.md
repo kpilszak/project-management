@@ -13,7 +13,7 @@ The main purpose is to create a project management app.
 Project is created with:
 * Java  
 * Spring Framework 5
-* Spring Boot 2
+* Spring Boot 2.3.0
 * Spring Security
 * Spring MVC
 * Spring Data
