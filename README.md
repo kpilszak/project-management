@@ -11,8 +11,7 @@ The main purpose is to create a project management app.
 
 ## Technologies
 Project is created with:
-* Java  
-* Spring Framework 5
+* Java 
 * Spring Boot 2.4.1
 * Spring Security
 * Spring MVC
