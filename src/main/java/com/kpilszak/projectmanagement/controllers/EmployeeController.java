@@ -1,7 +1,7 @@
 package com.kpilszak.projectmanagement.controllers;
 
-import com.kpilszak.projectmanagement.dao.EmployeeRepository;
 import com.kpilszak.projectmanagement.entities.Employee;
+import com.kpilszak.projectmanagement.services.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,13 +13,15 @@ import java.util.List;
 @Controller
 @RequestMapping("/employees")
 public class EmployeeController {
-	final EmployeeRepository employeeRepository;
+	final EmployeeService employeeService;
 	
-	public EmployeeController(final EmployeeRepository employeeRepository) {this.employeeRepository = employeeRepository;}
+	public EmployeeController(final EmployeeService employeeService) {
+		this.employeeService = employeeService;
+	}
 	
 	@GetMapping
 	public String displayEmployees(Model model) {
-		List<Employee> employees = employeeRepository.findAll();
+		List<Employee> employees = employeeService.getAll();
 		model.addAttribute("employees", employees);
 		return "employees/list-employees";
 	}
@@ -33,7 +35,7 @@ public class EmployeeController {
 	
 	@PostMapping("/save")
 	public String createEmployee(Employee employee, Model model) {
-		employeeRepository.save(employee);
+		employeeService.save(employee);
 		return "redirect:/employees/new";
 	}
 }

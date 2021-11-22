@@ -2,11 +2,11 @@ package com.kpilszak.projectmanagement.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kpilszak.projectmanagement.dao.EmployeeRepository;
-import com.kpilszak.projectmanagement.dao.ProjectRepository;
 import com.kpilszak.projectmanagement.dto.ChartData;
 import com.kpilszak.projectmanagement.dto.EmployeeProject;
 import com.kpilszak.projectmanagement.entities.Project;
+import com.kpilszak.projectmanagement.services.EmployeeService;
+import com.kpilszak.projectmanagement.services.ProjectService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +22,12 @@ public class HomeController {
 	@Value("${version}")
 	private String ver;
 	
-	final ProjectRepository projectRepository;
-	final EmployeeRepository employeeRepository;
+	final ProjectService projectService;
+	final EmployeeService employeeService;
 	
-	public HomeController(final ProjectRepository projectRepository, final EmployeeRepository employeeRepository) {
-		this.projectRepository = projectRepository;
-		this.employeeRepository = employeeRepository;
+	public HomeController(final ProjectService projectService, final EmployeeService employeeService) {
+		this.projectService = projectService;
+		this.employeeService = employeeService;
 	}
 	
 	@GetMapping("/")
@@ -36,16 +36,16 @@ public class HomeController {
 		
 		Map<String, Object> map = new HashMap<>();
 		
-		List<Project> projects = projectRepository.findAll();
+		List<Project> projects = projectService.getAll();
 		model.addAttribute("projects", projects);
 		
-		List<ChartData> projectData = projectRepository.getProjectStatus();
+		List<ChartData> projectData = projectService.getProjectStatus();
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		String jsonString = objectMapper.writeValueAsString(projectData);
 		model.addAttribute("projectStatusCount", jsonString);
 		
-		List<EmployeeProject> employeesProjectCount = employeeRepository.employeeProjects();
+		List<EmployeeProject> employeesProjectCount = employeeService.employeeProjects();
 		model.addAttribute("employeesProjectCount", employeesProjectCount);
 		
 		return "main/home";
