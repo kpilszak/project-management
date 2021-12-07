@@ -15,7 +15,7 @@ Project is created with:
 * Spring Boot 2.4.1
 * Spring Security
 * Spring MVC
-* Spring Data
+* Spring Data JPA
 * Hibernate
 * Thymeleaf  
   
