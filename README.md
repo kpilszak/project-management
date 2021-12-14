@@ -15,7 +15,6 @@ Project is created with:
 * Spring Boot 2.4.1
 * Spring Security
 * Spring Data JPA
-* Hibernate
 * Thymeleaf  
   
 IDE: Intellij IDEA 2020  
