@@ -6,7 +6,7 @@
 * [Sources](#sources)
 
 ## General info
-This project is a Spring Boot application.  
+This project is a web application.  
 The main purpose is to create a project management app.  
 
 ## Technologies
