@@ -16,6 +16,7 @@ Project is created with:
 * Spring Security
 * Spring Data JPA
 * Thymeleaf  
+* Maven  
   
 IDE: Intellij IDEA 2020.2  
 
