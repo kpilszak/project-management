@@ -1,6 +1,7 @@
 package com.kpilszak.projectmanagement.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kpilszak.projectmanagement.validators.UniqueValueConstraint;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -26,6 +27,7 @@ public class Employee {
 	@NotNull
 	@Email
 	@Column(unique = true)
+	@UniqueValueConstraint
 	private String email;
 	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.LAZY)
 	@JoinTable(name = "project_employee",
