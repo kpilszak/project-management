@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 public class Employee {
+
 	@Id
 	@SequenceGenerator(name = "employee_seq", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
