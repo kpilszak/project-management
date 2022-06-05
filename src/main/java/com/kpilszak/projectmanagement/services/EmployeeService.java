@@ -27,5 +27,12 @@ public class EmployeeService {
 	public List<EmployeeProject> employeeProjects() {
 		return employeeRepository.employeeProjects();
 	}
-	
+
+	public Employee findByEmployeeId(long id) {
+		return employeeRepository.findByEmployeeId(id);
+	}
+
+	public void delete(Employee employee) {
+		employeeRepository.delete(employee);
+	}
 }

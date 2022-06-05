@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -37,5 +38,24 @@ public class EmployeeController {
 	public String createEmployee(Employee employee, Model model) {
 		employeeService.save(employee);
 		return "redirect:/employees/new";
+	}
+
+	@GetMapping("/update")
+	public String displayEmployeeUpdateForm(@RequestParam("id") long id, Model model) {
+
+		Employee employee = employeeService.findByEmployeeId(id);
+
+		model.addAttribute("employee", employee);
+
+		return "employees/new-employee";
+	}
+
+	@GetMapping("/delete")
+	public String deleteEmployee(@RequestParam("id") long id, Model model) {
+		Employee employee = employeeService.findByEmployeeId(id);
+
+		employeeService.delete(employee);
+
+		return "redirect:/employees";
 	}
 }
