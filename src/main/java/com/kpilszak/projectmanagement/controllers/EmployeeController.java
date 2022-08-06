@@ -4,11 +4,10 @@ import com.kpilszak.projectmanagement.entities.Employee;
 import com.kpilszak.projectmanagement.services.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -35,7 +34,11 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("/save")
-	public String createEmployee(Employee employee, Model model) {
+	public String createEmployee(Model model, @Valid Employee employee, Errors errors) {
+
+		if (errors.hasErrors())
+			return "employees/new-employee";
+
 		employeeService.save(employee);
 		return "redirect:/employees/new";
 	}
