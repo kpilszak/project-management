@@ -3,20 +3,31 @@
 <head th:replace="layouts :: header"></head>
 <body>
 <nav th:replace="layouts :: navbar"></nav>
+
+<br>
+
 <div class="container">
+
     <form th:action="@{/employees/save}" th:object="${employee}" method="POST">
-        <div class="form-group row">
 
-            <input type="hidden" th:field="${employee.id}" />
+            <input type="hidden" th:field="${employee.id}"/>
 
-            <input type="text" placeholder="First Name" th:field="${employee.firstName}">
-            <input type="text" placeholder="Last Name" th:field="${employee.lastName}">
-            <input type="text" placeholder="Email address" th:field="${employee.email}">
+            <div class="form-group row">
+                <input type="text" placeholder="First Name" th:field="${employee.firstName}">
+            </div>
 
-            <button type="submit">Create Employee</button>
-        </div>
+            <div class="form-group row">
+                <input type="text" placeholder="Last Name" th:field="${employee.lastName}">
+            </div>
+
+            <div class="form-group row">
+                <input type="text" placeholder="Email address" th:field="${employee.email}">
+            </div>
+
+            <button class="btn btn-info col-2" type="submit">Enter Employee</button>
 
     </form>
+
 </div>
 </body>
 </html>
