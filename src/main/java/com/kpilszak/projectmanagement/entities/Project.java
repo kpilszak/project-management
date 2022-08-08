@@ -1,7 +1,9 @@
 package com.kpilszak.projectmanagement.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -17,6 +19,12 @@ public class Project {
 	private String stage; //NOTSTARTED, COMPLETED, INPROGRESS
 
 	private String description;
+
+	@NotBlank(message = "Date cannot be empty")
+	private Date startDate;
+
+	@NotBlank(message = "Date cannot be empty")
+	private Date endDate;
 
 	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.LAZY)
 	@JoinTable(name = "project_employee",
@@ -78,4 +86,21 @@ public class Project {
 		
 		employees.add(employee);
 	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
 }
