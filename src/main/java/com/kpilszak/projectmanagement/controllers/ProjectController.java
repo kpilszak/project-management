@@ -1,5 +1,8 @@
 package com.kpilszak.projectmanagement.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kpilszak.projectmanagement.dto.TimeChartData;
 import com.kpilszak.projectmanagement.entities.Employee;
 import com.kpilszak.projectmanagement.entities.Project;
 import com.kpilszak.projectmanagement.services.EmployeeService;
@@ -43,5 +46,17 @@ public class ProjectController {
     public String createProject(Project project, Model model) {
         projectService.save(project);
         return "redirect:/projects";
+    }
+
+    @GetMapping("/timelines")
+    public String displayProjectTimelines(Model model) throws JsonProcessingException {
+        List<TimeChartData> timelineData = projectService.getTimeData();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonTimelineString = objectMapper.writeValueAsString(timelineData);
+
+        model.addAttribute("projectTimeList", jsonTimelineString);
+
+        return "projects/project-timelines";
     }
 }

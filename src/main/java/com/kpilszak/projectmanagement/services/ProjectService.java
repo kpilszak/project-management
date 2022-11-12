@@ -2,6 +2,7 @@ package com.kpilszak.projectmanagement.services;
 
 import com.kpilszak.projectmanagement.dao.ProjectRepository;
 import com.kpilszak.projectmanagement.dto.ChartData;
+import com.kpilszak.projectmanagement.dto.TimeChartData;
 import com.kpilszak.projectmanagement.entities.Project;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,10 @@ public class ProjectService {
 	
 	public List<ChartData> getProjectStatus() {
 		return projectRepository.getProjectStatus();
+	}
+
+	public List<TimeChartData> getTimeData() {
+		return projectRepository.getTimeData();
 	}
 	
 }

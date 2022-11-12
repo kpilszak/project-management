@@ -1,6 +1,7 @@
 package com.kpilszak.projectmanagement.dao;
 
 import com.kpilszak.projectmanagement.dto.ChartData;
+import com.kpilszak.projectmanagement.dto.TimeChartData;
 import com.kpilszak.projectmanagement.entities.Project;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -16,4 +17,8 @@ public interface ProjectRepository extends PagingAndSortingRepository<Project, L
 			                                   "FROM project " +
 			                                   "GROUP BY stage")
 	List<ChartData> getProjectStatus();
+
+	@Query(nativeQuery = true, value = "SELECT name as projectName, start_date as startDate, end_date as endDate " +
+	"FROM project")
+	List<TimeChartData> getTimeData();
 }
