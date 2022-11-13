@@ -19,6 +19,6 @@ public interface ProjectRepository extends PagingAndSortingRepository<Project, L
 	List<ChartData> getProjectStatus();
 
 	@Query(nativeQuery = true, value = "SELECT name as projectName, start_date as startDate, end_date as endDate " +
-	"FROM project")
+	"FROM project WHERE start_date is not null")
 	List<TimeChartData> getTimeData();
 }
